@@ -38,14 +38,14 @@ def main():
     vx,vy = +5, +5 # 練習２：爆弾の速度
     go_img = pg.image.load("ex02/fig/8.png")
     go_img =pg.transform.rotozoom(go_img, 0, 2.0)
-    kk_img0 = pg.transform.flip(kk_img,True,False)  #こうかとん反転
-    kk_img1 = pg.transform.rotozoom(kk_img0, 90, 1.0)  #上
-    kk_img2 = pg.transform.rotozoom(kk_img0, 45, 1.0)  #右上
-    kk_img3 = pg.transform.rotozoom(kk_img0, 0, 1.0)   #右
-    kk_img4 = pg.transform.rotozoom(kk_img0, -45, 1.0) #右下
-    kk_img5 = pg.transform.rotozoom(kk_img0, -90, 1.0) #下
-    kk_img6 = pg.transform.rotozoom(kk_img, 45, 1.0)   #左下
-    kk_img7 = pg.transform.rotozoom(kk_img, -45, 1.0)  #左上
+    kk_img0 = pg.transform.flip(kk_img,True,False)  # こうかとん反転
+    kk_img1 = pg.transform.rotozoom(kk_img0, 90, 1.0)  # 上
+    kk_img2 = pg.transform.rotozoom(kk_img0, 45, 1.0)  # 右上
+    kk_img3 = pg.transform.rotozoom(kk_img0, 0, 1.0)   # 右
+    kk_img4 = pg.transform.rotozoom(kk_img0, -45, 1.0) # 右下
+    kk_img5 = pg.transform.rotozoom(kk_img0, -90, 1.0) # 下
+    kk_img6 = pg.transform.rotozoom(kk_img, 45, 1.0)   # 左下
+    kk_img7 = pg.transform.rotozoom(kk_img, -45, 1.0)  # 左上
     
     clock = pg.time.Clock()
     tmr = 0
@@ -60,34 +60,34 @@ def main():
             pg.display.update()
             clock.tick(1)
             print("Game Over")
-            return
-            
+            return 
+                  
         key_lst=pg.key.get_pressed()
         sum_mv=[0,0]
         for k, tpl in delta.items():
             if key_lst[k]:
                 sum_mv[0] += tpl[0]
                 sum_mv[1] += tpl[1]
-
+                        
         screen.blit(bg_img, [0, 0])
         kk_rct.move_ip(sum_mv[0],sum_mv[1])
         if check_bound(kk_rct) != (True,True):
             kk_rct.move_ip(-sum_mv[0],-sum_mv[1])
-        if sum_mv==[0,-5]: #上 
+        if sum_mv==[0,-5]: # 上 
             screen.blit(kk_img1, kk_rct) 
-        elif sum_mv==[+5,-5]: #右上
+        elif sum_mv==[+5,-5]: # 右上
             screen.blit(kk_img2, kk_rct)
-        elif sum_mv==[+5,0]: #右
+        elif sum_mv==[+5,0]: # 右
             screen.blit(kk_img3, kk_rct)
-        elif sum_mv==[+5,+5]: #右下
+        elif sum_mv==[+5,+5]: # 右下
             screen.blit(kk_img4, kk_rct)
-        elif sum_mv==[0,+5]:#下
+        elif sum_mv==[0,+5]:# 下
             screen.blit(kk_img5, kk_rct)
-        elif sum_mv==[-5,+5]:#左下
+        elif sum_mv==[-5,+5]:# 左下
             screen.blit(kk_img6, kk_rct)
-        elif sum_mv==[-5,-5]:#左上
+        elif sum_mv==[-5,-5]:# 左上
             screen.blit(kk_img7, kk_rct)
-        else: #左 ,　入力なし
+        else: # 左 ,　入力なし
             screen.blit(kk_img, kk_rct)
         bb_rct.move_ip(vx,vy) # 練習２：爆弾を移動させる
         yoko, tate = check_bound(bb_rct)
